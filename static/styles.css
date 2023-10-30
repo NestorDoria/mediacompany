@@ -1,0 +1,10 @@
+.video-panel {
+    display: flex;             /* Usar flexbox para alinear horizontalmente */
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.video {
+    width: 320px;              /* Ancho fijo para cada video */
+    margin-right: 10px;        /* Espacio entre los videos */
+}

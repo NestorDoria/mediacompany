@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIA COMPANY</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+    <script>
+    function confirmDelete(video_id) {
+        if (confirm('¿Estás seguro de que deseas eliminar este video?')) {
+            fetch(`/delete-video/${video_id}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.status === 200) {
+                    alert(`Video ${video_id} ha sido eliminado exitosamente.`);
+                    setTimeout(() => {
+                        window.location = '/';  // Redirigir a la página principal
+                    }, 2000);  // Esperar 2 segundos antes de la redirección
+                } else {
+                    alert(`Video ${video_id} no encontrado.`);
+                }
+            });
+        }
+    }
+</script>
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: lightblue; /* Cambia el color de fondo a azul claro */
+        }
+
+        .header {
+            text-align: left; /* Alinea el encabezado a la izquierda */
+            padding: 10px;
+        }
+
+        .header h1 {
+            color: red; /* Cambia el color del título a rojo */
+            margin: 0; /* Elimina el margen superior del título */
+            padding: 10px; /* Añade espacio alrededor del título */
+        }
+
+        .search-bar {
+            margin: 20px 0;
+        }
+
+        .video {
+            width: 30%;
+        }
+
+        .video-description {
+            text-align: center;
+        }
+
+        .button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MEDIA COMPANY</h1>
+    </div>
+    <div class="upload-panel">
+        <form action="/upload-image/" method="post" enctype="multipart/form-data">
+            <label for="image">Subir imagen:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <button type="submit" class="button">Subir</button>
+        </form>
+    </div>
+    <div class="search-bar">
+        <label>
+            <input type="text" placeholder="Buscar..." />
+        </label>
+        <button class="button">Buscar</button>
+    </div>
+    <form action="/upload-video/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="video/*">
+        <button type="submit">Subir Video</button>
+    </form>
+    <!-- Primer panel -->
+<div class="video">
+    <video controls width="320">
+        <source src="/play/1" type="video/mp4">
+    </video>
+    <div class="video-description">
+    <p>Descripción del Video 1</p>
+    <a href="/play/1" class="button">Reproducir</a>
+    <form action="/delete-video/1" method="post">
+    <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este video?')">Eliminar</button>
+</form>
+
+</div>
+
+</div>
+<!-- Segundo panel -->
+<div class="video">
+    <video controls width="320">
+        <source src="/play/2" type="video/mp4">
+    </video>
+    <div class="video-description">
+        <p>Descripción del Video 2</p>
+        <a href="/play/2" class="button">Reproducir</a>
+        <form action="/delete-video/2" method="post">
+    <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este video?')">Eliminar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Tercer panel -->
+<div class="video">
+    <video controls width="320">
+        <source src="/play/3" type="video/mp4">
+    </video>
+    <div class="video-description">
+        <p>Descripción del Video 3</p>
+        <a href="/play/3" class="button">Reproducir</a>
+        <form action="/delete-video/3" method="post">
+    <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este video?')">Eliminar</button>
+</form>
+    </div>
+</div>
+</body>
+</html>
